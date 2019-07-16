@@ -5,8 +5,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import CustomerList from './CustomerList';
-import DropDownCus from './DropDownCus';
+import CustomerList from './customer/CustomerList';
+import DropDownCus from './customer/DropDownCus';
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -50,12 +51,8 @@ export default function ScrollableTabsButtonAuto() {
           <Tab label="Đang giao dịch"/>
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer>
-        <DropDownCus />
-        <CustomerList/></TabContainer>}
-      {value === 1 && <TabContainer>
-        <DropDownCus />
-      </TabContainer>}
+      {value === 0 && <TabContainer><CustomerList/></TabContainer>}
+      {value === 1 && <TabContainer><DropDownCus /></TabContainer>}
     </div>
   );
 }

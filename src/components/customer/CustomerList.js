@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, {Component} from 'react'
 import CustomerListItem from './CustomerListItem';
+import DropDownCus from './DropDownCus';
 import {Table} from 'react-bootstrap';
 
 class CustomerList extends Component{
     state ={
-        customerList : []
+		customerList : [],
+		filterName: ''
     }
     componentDidMount(){
 		axios({
@@ -21,8 +23,23 @@ class CustomerList extends Component{
 			console.log(error);
 		});
 	}
+	onFilter = (filterName1) =>{
+		console.log(filterName1);
+		this.setState({
+			filterName: filterName1.toLowerCase()
+		},()=>{
+			console.log(this.state);
+		})
+	}
     render(){
-		const customerList = this.state.customerList;
+		var customerList = this.state.customerList;
+		const filter = this.state.filterName;
+		console.log(filter+"ở sauu đóooo");
+		if(filter){
+			customerList = customerList.filter((customer) =>{
+				return customer.customerName.toLowerCase().indexOf(filter) !== -1;
+			});
+		}
 		const eleCustomer = customerList.map((customer,index) =>{
 			return <CustomerListItem 
 						key={customer.id} 
@@ -31,7 +48,8 @@ class CustomerList extends Component{
 		})
         return(
 			<div className="row mt-15">
-				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
+				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<DropDownCus onFilter={this.onFilter}/>			
 					<Table responsive  hover>
 						<thead>
 							<tr>

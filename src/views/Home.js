@@ -13,9 +13,8 @@ import Container from '@material-ui/core/Container';
 import Logo from '../images/logo.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-
 import { mainListItems,secondaryListItems} from '../components/NaviItem';
-
+import CustomerAddForm from '../components/customer/CustomerAddForm';
 //import CustomerAddForm from '../components/CustomerAddForm';
 import TabView from '../components/TabView';
 const drawerWidth = 240;
