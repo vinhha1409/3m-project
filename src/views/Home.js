@@ -1,25 +1,23 @@
 import React from 'react';
-import {Form, FormControl, InputGroup,Image} from 'react-bootstrap';
+import {Image} from 'react-bootstrap';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
-import InputBase from '@material-ui/core/InputBase';
 import Logo from '../images/logo.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import SearchIcon from '@material-ui/icons/Search';
 
 import { mainListItems,secondaryListItems} from '../components/NaviItem';
-import CustomerList from '../components/CustomerList';
 
-
+//import CustomerAddForm from '../components/CustomerAddForm';
+import TabView from '../components/TabView';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -123,19 +121,6 @@ export default function Dashboard() {
           > 
             <MenuIcon />
           </IconButton>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'Search' }}
-            />
-          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -154,14 +139,15 @@ export default function Dashboard() {
            
         </span>
         
-
         {/* List */}
-        <List>{mainListItems}</List>        
+        <List>{mainListItems}</List>
+        <Divider/>
+        <List>{secondaryListItems}</List>        
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-            <CustomerList />
+          <TabView/>
         </Container>
       </main>
     </div>

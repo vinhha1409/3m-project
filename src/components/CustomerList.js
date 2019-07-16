@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {Component} from 'react'
 import CustomerListItem from './CustomerListItem';
-import {Table,Container } from 'react-bootstrap';
+import {Table} from 'react-bootstrap';
 
 class CustomerList extends Component{
     state ={
@@ -30,26 +30,26 @@ class CustomerList extends Component{
 						customer={customer} />
 		})
         return(
-			<Container>
-				<Table striped bordered hover>
-					<thead>
-						<tr>
-						<th className="text-center">STT</th>
-						<th className="text-center">Tên khách hàng</th>
-						<th className="text-center">Địa chỉ</th>
-						<th className="text-center">Ngày sinh</th>
-						<th className="text-center">Email</th>
-						<th className="text-center">Điện thoại</th>
-						<th className="text-center">Độ ưu tiên</th>
-						<th className="text-center">Giới tính</th>
-						</tr>
-					</thead>
-					<tbody> 
-						{eleCustomer}          
-					</tbody>
-			</Table>
-        
-			</Container>
+			<div className="row mt-15">
+				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
+					<Table responsive  hover>
+						<thead>
+							<tr>
+							<th className="text-center">Tên khách hàng</th>
+							<th className="text-center">Địa chỉ</th>
+							<th className="text-center">Ngày sinh</th>
+							<th className="text-center">Email</th>
+							<th className="text-center">Điện thoại</th>
+							<th className="text-center">Giới tính</th>
+							</tr>
+						</thead>
+						<tbody> 
+							{eleCustomer}          
+						</tbody>
+					</Table>
+				</div>	
+			</div>
+	
             )          
     }    
 }
