@@ -5,26 +5,39 @@ class DropDownCus extends Component{
         super(props);
         this.state = {
             filterName: '',
+            filterEmail: '',
+            filterPhone: ''
         }
     }
     onChange =(event) =>{
         var target = event.target;
         var name = target.name;
         var value = target.value;
-        this.props.onFilter(
-            name === 'filterName' ? value : this.filterName)
+        this.props.onFilter ( 
+            name === 'filterName' ? value : this.filterName,
+            name === 'filterEmail' ? value : this.filterEmail,
+            name === 'filterPhone' ? value : this.filterPhone );
         this.setState({
             [name] : value,
         });
 
     }
     render(){
-        var {filterName} = this.state;
+        var {filterName,filterEmail,filterPhone} = this.state;
         return(
-        <InputGroup className="mb-3">           
-            <FormControl aria-describedby="basic-addon1" name="filterName" value={filterName} onChange={this.onChange} placeholder="Nhập tên khách hàng..."/>
+        <InputGroup className="mb-3">
+            <div className="row">
+                <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <FormControl name="filterName" value={filterName} onChange={this.onChange} placeholder="Nhập tên khách hàng... "/>
+                </div>
+                <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <FormControl name="filterEmail" value={filterEmail} onChange={this.onChange} placeholder="Nhập email khách hàng..."/>
+                </div>
+                <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <FormControl name="filterPhone" value={filterPhone} onChange={this.onChange} placeholder="Nhập số điện thoại..."/>
+                </div>    
+            </div>                                      
         </InputGroup>
-
         );
     }
 }

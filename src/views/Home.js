@@ -14,8 +14,6 @@ import Logo from '../images/logo.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems,secondaryListItems} from '../components/NaviItem';
-import CustomerAddForm from '../components/customer/CustomerAddForm';
-//import CustomerAddForm from '../components/CustomerAddForm';
 import TabView from '../components/TabView';
 const drawerWidth = 240;
 
@@ -106,6 +104,7 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  console.log(open);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -146,7 +145,7 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <TabView/>
+          
         </Container>
       </main>
     </div>
