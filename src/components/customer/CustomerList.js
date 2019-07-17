@@ -49,7 +49,9 @@ class CustomerList extends Component{
         return(
 			<div className="row mt-15">
 				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<DropDownCus onFilter={this.onFilter}/>			
+					<div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<DropDownCus onFilter={this.onFilter}/>
+					</div>				
 					<Table responsive  hover>
 						<thead>
 							<tr>
