@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ScrollableTabsButtonAuto() {
+export default function ScrollableTabsButtonAuto(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   //var open = this.props.open;
@@ -36,7 +36,6 @@ export default function ScrollableTabsButtonAuto() {
   function handleChange(event, newValue) {
     setValue(newValue);
   }
-
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -52,7 +51,7 @@ export default function ScrollableTabsButtonAuto() {
           <Tab label="Đang giao dịch"/>
         </Tabs>
       </AppBar>
-      {value === 0 && <TabContainer><CustomerList/></TabContainer>}
+      {value === 0 && <TabContainer><CustomerList open={props.open}/></TabContainer>}
       {value === 1 && <TabContainer><DropDownCus /></TabContainer>}
     </div>
   );

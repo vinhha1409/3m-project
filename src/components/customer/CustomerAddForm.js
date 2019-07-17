@@ -14,7 +14,9 @@ class CustomerAddForm extends Component{
           email: '',
           phone: '',
           description:'',
-          staff:''
+          staff:'',
+          customerType: '',
+          customerProfit: ''
         }
       }
       addCustomer(obj){
@@ -99,7 +101,24 @@ class CustomerAddForm extends Component{
                         <Form.Control type="address" name="address" value={this.state.address} placeholder="" onChange={this.onChange}/>
                       </Form.Group>
                     </Form.Row>
-                    
+                    <Form.Row className="add-form-row">
+                        <Form.Group as={Col} controlId="formGridCusType">
+                                <Form.Label>Nhóm khách hàng</Form.Label>
+                                <Form.Control as="select" name="customerType" value={this.state.customerType} onChange={this.onChange} >
+                                  <option value={1}>Nhóm 1</option>
+                                  <option value={2}>Nhóm 2</option>
+                                  <option value={3}>Nhóm 3</option>
+                                </Form.Control>
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formGridCusProfit">
+                                <Form.Label>Ưu đãi</Form.Label>
+                                <Form.Control as="select" name="customerProfit" value={this.state.customerProfit} onChange={this.onChange} >
+                                  <option value={1}>Nhóm 1</option>
+                                  <option value={2}>Nhóm 2</option>
+                                  <option value={3}>Nhóm 3</option>
+                                </Form.Control>
+                        </Form.Group>
+                    </Form.Row>    
                     <Form.Row className="add-form-row">
                         <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Email</Form.Label>

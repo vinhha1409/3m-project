@@ -14,7 +14,7 @@ class CustomerList extends Component{
 			filterEmail: '',
 			filterPhone:''
 		}	
-    }
+	}
     componentDidMount(){
 		axios({
 			method: 'get',
@@ -53,6 +53,7 @@ class CustomerList extends Component{
     render(){
 		var customerList = this.state.customerList;
 		const {filter} = this.state;
+		console.log(this.props.open+' in customerList');
 		if(filter){			
 				customerList = customerList.filter((customer) =>{
 				return customer.customerName.toLowerCase().indexOf(filter.filterName) !== -1 && 
@@ -73,11 +74,10 @@ class CustomerList extends Component{
 				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div className="row">
 						<div className="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-							<DropDownCus onFilter ={this.onFilter }										 
-							/>
+							<DropDownCus onFilter ={this.onFilter }/>
 						</div>
 						<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-							<PopupForm />
+							<PopupForm open={this.props.open}/>
 						</div>
 					</div>												
 					<Table responsive  hover>

@@ -24,11 +24,23 @@
   margin-left: 10px;
   margin-top: 20px;
 }
-.modal-form{
-  top: 30px;
-  left: 100px;
-}
 .modal-form-body{
   right: 5px;
   margin: 15px;
+}
+.detail-card{
+  margin: 15px;
+}
+.detail-card-8t{
+  margin: 15px 15px 50px;
+}
+.detail-card-8b{
+  margin: 15px ;
+}
+.debt{
+  margin: 7px 12px;
+}
+.cus-note{
+  border: ridge rgb(211, 209, 209) 1px;
+  padding: 7px;
 }
