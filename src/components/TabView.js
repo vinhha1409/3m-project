@@ -31,7 +31,8 @@ const useStyles = makeStyles(theme => ({
 export default function ScrollableTabsButtonAuto() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  //var open = this.props.open;
+  //console.log(this.useState);
   function handleChange(event, newValue) {
     setValue(newValue);
   }
