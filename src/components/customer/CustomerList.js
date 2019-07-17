@@ -53,7 +53,6 @@ class CustomerList extends Component{
     render(){
 		var customerList = this.state.customerList;
 		const {filter} = this.state;
-		console.log(this.props.open+' in customerList');
 		if(filter){			
 				customerList = customerList.filter((customer) =>{
 				return customer.customerName.toLowerCase().indexOf(filter.filterName) !== -1 && 
