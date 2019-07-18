@@ -2,8 +2,58 @@ import React,{Component} from 'react';
 import {Card,Row,Col} from 'react-bootstrap';
 import TabViewDatil from '../TabViewDetail';
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import PopupFormUpdate from '../PopupFormUpdate';
 class CustomerDetail extends Component{
+    state ={
+		customerDetail : [],
+	}
+    componentDidMount(){
+		axios({
+			method: 'get',
+			url: 'http://5d2be65c8c90070014971e78.mockapi.io/customer/15'
+		}).then(respone => {
+            console.log(respone);
+			this.setState({
+				customerDetail: respone.data,
+			})
+		}).catch(error => {
+			console.log(error);
+		});
+    }
+    deleteCustomer(){
+        axios({
+			method: 'delete',
+			url: 'http://5d2be65c8c90070014971e78.mockapi.io/customer/15'
+		}).then(respone => {
+            console.log(respone+"xóa được chưuaaaaaaaaaaa");
+		}).catch(error => {
+			console.log(error);
+		});
+    }
+    loadAnother(){
+        axios({
+            method: 'get',
+            url: 'http://5d2be65c8c90070014971e78.mockapi.io/customer/14'
+        }).then(respone => {
+            console.log(respone);
+            this.setState({
+                customerDetail: respone.data,
+            })
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+    componentWilllUpdate(nextState){
+        this.loadAnother();
+    }
+    
+    onDelete = () =>{
+        this.deleteCustomer();
+        
+    }
     render(){
+        const customerDetail = this.state.customerDetail;
         return(
             <div>
                 <h1>Thông tin chi tiết khách hàng</h1>
@@ -13,7 +63,7 @@ class CustomerDetail extends Component{
                         <Row>
                             <Col xl={6}> 
                                 <span> 
-                                    <h5 className="debt">Phan Linh</h5>
+                                    <h5 className="debt">{customerDetail.customerName}</h5>
                                 </span>
                             </Col>
                             <Col style={{textAlign: 'right'}} xl={6}> 
@@ -23,7 +73,7 @@ class CustomerDetail extends Component{
                         <Card.Body>
                             <Card.Title style={{marginTop: '30px'}}>Ghi chú</Card.Title>
                                 <Card.Text className="cus-note">
-                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                {customerDetail.description}
                                 </Card.Text>                           
                         </Card.Body>
                         </Card>
@@ -40,13 +90,13 @@ class CustomerDetail extends Component{
                                 <Card.Text>
                                     Nhóm khách hàng     :  Bán lẻ
                                     <br/>
-                                    Mã khách hàng       :  ---
+                                    Mã khách hàng       :  {customerDetail.id}
                                     <br/>
-                                    Nhân viên phụ trách : Phan Linh
+                                    Nhân viên phụ trách : {customerDetail.staff}
                                     <br/>
-                                    Giới tính           : Nữ 
+                                    Giới tính           : {(customerDetail.gender) ? "Nam" : "Nữ"}
                                     <br/>
-                                    Ngày sinh           : 12/8/1998
+                                    Ngày sinh           : {customerDetail.DOB}
                                     <br/>
                                 </Card.Text>
                             </Card.Body>
@@ -55,9 +105,9 @@ class CustomerDetail extends Component{
                             <Card.Body>
                                 <Card.Title>Liên hệ</Card.Title>
                                 <Card.Text>
-                                    Số điện thoại     :  0987654321
+                                    Số điện thoại     :  {customerDetail.phoneNumber}
                                     <br/>
-                                    Email       :  something@gmail.com
+                                    Email       :  {customerDetail.email}
                                     <br/>
                                 </Card.Text>
                             </Card.Body>
@@ -80,8 +130,8 @@ class CustomerDetail extends Component{
                     </Col>
                 </Row>
             <hr className="form-line"/>
-                <Button variant="danger" className="float-left">Xóa khách hàng</Button>                            
-                <Button variant="primary" className="float-right">Sửa thông tin</Button>           
+                <Button variant="danger" className="float-left" onClick={this.onDelete}>Xóa khách hàng</Button>                            
+                <PopupFormUpdate open={this.props.open} customer={customerDetail}/>           
             </div>      
         );
     }

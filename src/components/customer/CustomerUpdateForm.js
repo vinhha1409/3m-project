@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Form,Col,Button,Row,Container} from 'react-bootstrap';
 import axios from 'axios';
-const url= 'http://5d2be65c8c90070014971e78.mockapi.io/customer'
+const url= 'http://5d2be65c8c90070014971e78.mockapi.io/customer/12'
 class CustomerAddForm extends Component{
     constructor(props){
         super(props);
@@ -20,7 +20,7 @@ class CustomerAddForm extends Component{
         }
       }
       addCustomer(obj){
-        axios.post(url,obj, {
+        axios.put(url,obj, {
 			headers: {
                 'content-type': 'application/json',
             }
@@ -71,7 +71,23 @@ class CustomerAddForm extends Component{
       generateId () {
         return this.s4() ;
       }
+      componentDidMount(){
+          const customer = this.props.customer;
+        this.setState({
+            name : customer.customerName,
+            DOB: customer.DOB,
+            gender: customer.gender,
+            address: customer.customerAddress,
+            email: customer.email,
+            phone: customer.phoneNumber,
+            description: customer.description,
+            staff: customer.staff,
+        },()=>{
+            
+        })
+      }
     render(){
+        
       return(
         <Row>
           <Col xs={12}>
@@ -83,12 +99,12 @@ class CustomerAddForm extends Component{
                     <Form.Row className="add-form-row">
                       <Form.Group as={Col} controlId="formGridName">
                       <Form.Label>Tên khách hàng</Form.Label>
-                      <Form.Control type="name" name="name" value={this.state.name} placeholder="Nhập tên khách hàng" onChange={this.onChange}/>
+                      <Form.Control type="name" name="name" value={this.state.name} onChange={this.onChange}/>
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formGridDOB">
                           <Form.Label>Ngày sinh</Form.Label>
-                          <Form.Control type="date" name="DOB" value={this.state.DOB} placeholder="Nhập ngày sinh" onChange={this.onChange}/>
+                          <Form.Control type="date" name="DOB" value={this.state.DOB} onChange={this.onChange}/>
                       </Form.Group>  
 
                       <Form.Group as={Col} xs={2} controlId="formGridGender">
@@ -102,7 +118,7 @@ class CustomerAddForm extends Component{
                     <Form.Row className="add-form-row">
                       <Form.Group as={Col} xs={12}controlId="formGridAddress">
                         <Form.Label>Địa chỉ</Form.Label>
-                        <Form.Control type="address" name="address" value={this.state.address} placeholder="" onChange={this.onChange}/>
+                        <Form.Control type="address" name="address" value={this.state.address} onChange={this.onChange}/>
                       </Form.Group>
                     </Form.Row>
                     <Form.Row className="add-form-row">
