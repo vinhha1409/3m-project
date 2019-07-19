@@ -24,7 +24,7 @@ function TabContainer(props) {
       width: '100%',
     },
   }));
-export default function DisabledTabs() {
+export default function DisabledTabs(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
   
@@ -45,14 +45,12 @@ export default function DisabledTabs() {
         >
           <Tab label="Lịch sử đơn hàng" />
           <Tab label="Công nợ" />
-          <Tab label="Địa chỉ" />
           
         </Tabs>
       </AppBar>
       {value === 0 && <TabContainer>
           <TablCusDetail/></TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      {value === 1 && <TabContainer>Item Two</TabContainer>}      
       
     </div>
   );

@@ -79,7 +79,7 @@ class CustomerDetail extends Component{
                         </Card>
                         <Card className="detail-card-8b" style={{ width: '100%' }}>
                             <Card.Body>
-                                <TabViewDatil />
+                                <TabViewDatil customer={customerDetail}/>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -106,6 +106,8 @@ class CustomerDetail extends Component{
                                 <Card.Title>Liên hệ</Card.Title>
                                 <Card.Text>
                                     Số điện thoại     :  {customerDetail.phoneNumber}
+                                    <br/>
+                                    Địa chỉ      :  {customerDetail.customerAddress}
                                     <br/>
                                     Email       :  {customerDetail.email}
                                     <br/>

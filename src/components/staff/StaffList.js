@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, {Component} from 'react'
-import CustomerListItem from './CustomerListItem';
+import StaffListItem from './StaffListItem';
 import DropDownCus from './DropDownCus';
 import PopupForm from '../PopupForm';
 import {Table} from 'react-bootstrap';
 
 
-class CustomerList extends Component{
+class StaffList extends Component{
     state ={
-		customerList : [],
+		staffList : [],
 		filter:{
 			filterName: '',
 			filterEmail: '',
@@ -18,10 +18,10 @@ class CustomerList extends Component{
     componentDidMount(){
 		axios({
 			method: 'get',
-			url: 'http://5d2be65c8c90070014971e78.mockapi.io/customer'
+			url: 'http://5d2be65c8c90070014971e78.mockapi.io/staff'
 		}).then(respone => {
 			this.setState({
-				customerList: respone.data,
+				staffList: respone.data,
 			})
 		}).catch(error => {
 			console.log(error);
@@ -51,22 +51,22 @@ class CustomerList extends Component{
 		}
 	}
     render(){
-		var customerList = this.state.customerList;
+		var staffList = this.state.staffList;
 		const {filter} = this.state;
 		if(filter){			
-				customerList = customerList.filter((customer) =>{
-				return customer.customerName.toLowerCase().indexOf(filter.filterName) !== -1 && 
-						customer.email.toLowerCase().indexOf(filter.filterEmail) !== -1 &&
-						customer.phoneNumber.indexOf(filter.filterPhone) !== -1 ;					
+				staffList = staffList.filter((staff) =>{
+				return staff.staffName.toLowerCase().indexOf(filter.filterName) !== -1 && 
+						staff.email.toLowerCase().indexOf(filter.filterEmail) !== -1 &&
+						staff.staffPhone.indexOf(filter.filterPhone) !== -1 ;					
 				});													
 		}else{
-			return customerList;
+			return StaffList;
 		}
-		const eleCustomer = customerList.map((customer,index) =>{
-			return <CustomerListItem 
-						key={customer.id} 
+		const eleStaff = StaffList.map((staff,index) =>{
+			return <StaffListItem 
+						key={staff.id} 
 						index={index} 
-						customer={customer} />
+						staff={staff} />
 		})
         return(
 			<div className="row mt-15">
@@ -82,8 +82,8 @@ class CustomerList extends Component{
 					<Table responsive  hover>
 						<thead>
 							<tr>
-							<th className="text-center">Tên nhân viên</th>
-							<th className="text-center">Chức vụ</th>
+							<th className="text-center">Tên khách hàng</th>
+							<th className="text-center">Địa chỉ</th>
 							<th className="text-center">Ngày sinh</th>
 							<th className="text-center">Email</th>
 							<th className="text-center">Điện thoại</th>
@@ -91,7 +91,7 @@ class CustomerList extends Component{
 							</tr>
 						</thead>
 						<tbody> 
-							{eleCustomer}          
+							{eleStaff}          
 						</tbody>
 					</Table>
 				</div>	
@@ -100,4 +100,4 @@ class CustomerList extends Component{
             )          
     }    
 }
-export default CustomerList;
+export default StaffList;
