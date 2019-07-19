@@ -97,7 +97,7 @@ class StaffAddFrom extends Component{
                     </Form.Row>
                     <Form.Row className="add-form-row">
                       <Form.Group as={Col} xs={12}controlId="formGridAddress">
-                        <Form.Label>Địa chỉ</Form.Label>
+                        <Form.Label>Chức vụ</Form.Label>
                         <Form.Control type="text" name="role" value={this.state.role} placeholder="Saler" onChange={this.onChange}/>
                       </Form.Group>
                     </Form.Row>
@@ -119,7 +119,7 @@ class StaffAddFrom extends Component{
                 <Form.Row className="add-form-row" >
                   <Form.Group as={Col} controlId="formGridName">
                     <Form.Label>Mô tả</Form.Label>
-                    <Form.Control as="textarea" rows="5" name="description" value={this.state.description} placeholder="Nhập mô tả về khách hàng" onChange={this.onChange}/>
+                    <Form.Control as="textarea" rows="5" name="description" value={this.state.description} placeholder="Nhập mô tả về nhân viên" onChange={this.onChange}/>
                   </Form.Group>                 
                 </Form.Row>                                                   
                 </Container> 

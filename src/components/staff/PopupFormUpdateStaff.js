@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button,Modal} from 'react-bootstrap';
-import CustomerAddForm from './customer/CustomerAddForm';
+import StaffUpdateForm from './StaffUpdateForm';
 
 
 export default function PopupForm(props) {
@@ -9,7 +9,7 @@ export default function PopupForm(props) {
     return (
       <>
         <Button variant="primary" className="float-right" onClick={() => setShow(true) }>
-          Thêm khách hàng 
+          Sửa thông tin 
         </Button>
   
         <Modal
@@ -22,11 +22,11 @@ export default function PopupForm(props) {
         >
           <Modal.Header closeButton>
             <Modal.Title id="popup-form">
-              <h4>Thêm mới khách hàng</h4>
+              <h4>Sửa thông tin nhân viên</h4>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-form-body">
-            <CustomerAddForm/>
+            <StaffUpdateForm staff={props.staff}/>
           </Modal.Body>
         </Modal>
       </>

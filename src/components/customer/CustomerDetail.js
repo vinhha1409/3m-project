@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import {Card,Row,Col} from 'react-bootstrap';
-import TabViewDatil from '../TabViewDetail';
+import TabViewDatil from './TabViewDetail';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import PopupFormUpdate from '../PopupFormUpdate';
+import PopupFormUpdate from './PopupFormUpdateCus';
 class CustomerDetail extends Component{
     state ={
 		customerDetail : [],

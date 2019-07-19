@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button,Modal} from 'react-bootstrap';
-import CustomerUpdateForm from './customer/CustomerUpdateForm';
+import CustomerUpdateForm from './CustomerUpdateForm';
 
 
 export default function PopupForm(props) {
@@ -22,7 +22,7 @@ export default function PopupForm(props) {
         >
           <Modal.Header closeButton>
             <Modal.Title id="popup-form">
-              <h4>Thêm mới khách hàng</h4>
+              <h4>Thay đổi thông tin khách hàng</h4>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-form-body">

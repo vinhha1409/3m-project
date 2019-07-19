@@ -5,8 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import CustomerList from './customer/CustomerList';
-import DropDownCus from './customer/DropDownCus';
+import CustomerList from './CustomerList';
+import DropDownCus from './DropDownCus';
 
 function TabContainer(props) {
   return (

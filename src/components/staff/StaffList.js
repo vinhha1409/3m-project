@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {Component} from 'react'
 import StaffListItem from './StaffListItem';
 import DropDownCus from './DropDownCus';
-import PopupForm from '../PopupForm';
+import PopupForm from './PopupFormStaff';
 import {Table} from 'react-bootstrap';
 
 
@@ -56,13 +56,13 @@ class StaffList extends Component{
 		if(filter){			
 				staffList = staffList.filter((staff) =>{
 				return staff.staffName.toLowerCase().indexOf(filter.filterName) !== -1 && 
-						staff.email.toLowerCase().indexOf(filter.filterEmail) !== -1 &&
+						staff.staffEmail.toLowerCase().indexOf(filter.filterEmail) !== -1 &&
 						staff.staffPhone.indexOf(filter.filterPhone) !== -1 ;					
 				});													
 		}else{
-			return StaffList;
+			return staffList;
 		}
-		const eleStaff = StaffList.map((staff,index) =>{
+		const eleStaff = staffList.map((staff,index) =>{
 			return <StaffListItem 
 						key={staff.id} 
 						index={index} 
@@ -82,8 +82,8 @@ class StaffList extends Component{
 					<Table responsive  hover>
 						<thead>
 							<tr>
-							<th className="text-center">Tên khách hàng</th>
-							<th className="text-center">Địa chỉ</th>
+							<th className="text-center">Tên nhân viên</th>
+							<th className="text-center">Chức vụ</th>
 							<th className="text-center">Ngày sinh</th>
 							<th className="text-center">Email</th>
 							<th className="text-center">Điện thoại</th>

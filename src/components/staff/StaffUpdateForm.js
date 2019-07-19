@@ -1,25 +1,22 @@
 import React, {Component} from 'react';
 import {Form,Col,Button,Row,Container} from 'react-bootstrap';
 import axios from 'axios';
-const url= 'http://5d2be65c8c90070014971e78.mockapi.io/customer/12'
-class CustomerAddForm extends Component{
+const url= 'http://5d2be65c8c90070014971e78.mockapi.io/staff/22'
+class StaffUpdateForm extends Component{
     constructor(props){
         super(props);
         this.state={
           id: this.generateId(),  
           name: '',
           DOB: '',
-          gender: true,
-          address: '',
+          gender: true,          
           email: '',
           phone: '',
-          description:'',
-          staff:'',
-          customerType: '1',
-          customerProfit: '1'
+          description:'', 
+          role: ''       
         }
       }
-      addCustomer(obj){
+      updateStaff(obj){
         axios.put(url,obj, {
 			headers: {
                 'content-type': 'application/json',
@@ -49,19 +46,18 @@ class CustomerAddForm extends Component{
         
         const data = {
             "id": this.state.id,
-            "customerName": this.state.name,
-            "customerAddress": this.state.address,
+            "staffName": this.state.name,
+            "role": this.state.role,
             "DOB": this.state.DOB,
-            "email": this.state.email,
+            "staffEmail": this.state.email,
             "gender": this.state.gender,
-            "phoneNumber": this.state.phone,
+            "staffPhone": this.state.phone,
             "description": this.state.description,
-            "staff": this.state.staff,
         };
-        if(!data.customerName){
-          alert("Tên khách hàng không được để trống!")
+        if(!data.staffName){
+          alert("Tên nhân viên không được để trống!")
         }else{
-          this.addCustomer(data);
+          this.updateStaff(data);
           alert("Submitted!!!");      
         }
       }
@@ -72,22 +68,22 @@ class CustomerAddForm extends Component{
         return this.s4() ;
       }
       componentDidMount(){
-          const customer = this.props.customer;
+          const staff = this.props.staff;
         this.setState({
-            name : customer.customerName,
-            DOB: customer.DOB,
-            gender: customer.gender,
-            address: customer.customerAddress,
-            email: customer.email,
-            phone: customer.phoneNumber,
-            description: customer.description,
-            staff: customer.staff,
+            name : staff.staffName,
+            DOB: staff.DOB,
+            gender: staff.gender,
+            role: staff.role,
+            email: staff.staffEmail,
+            phone: staff.staffPhone,
+            description: staff.description,
+            
         },()=>{
             
         })
       }
     render(){
-        
+        console.log(this.props.staff);
       return(
         <Row>
           <Col xs={12}>
@@ -98,7 +94,7 @@ class CustomerAddForm extends Component{
                 <Container className="add-form">
                     <Form.Row className="add-form-row">
                       <Form.Group as={Col} controlId="formGridName">
-                      <Form.Label>Tên khách hàng</Form.Label>
+                      <Form.Label>Tên nhân viên</Form.Label>
                       <Form.Control type="name" name="name" value={this.state.name} onChange={this.onChange}/>
                       </Form.Group>
 
@@ -116,42 +112,21 @@ class CustomerAddForm extends Component{
                       </Form.Group>                    
                     </Form.Row>
                     <Form.Row className="add-form-row">
-                      <Form.Group as={Col} xs={12}controlId="formGridAddress">
-                        <Form.Label>Địa chỉ</Form.Label>
-                        <Form.Control type="address" name="address" value={this.state.address} onChange={this.onChange}/>
+                      <Form.Group as={Col} xs={12}controlId="formGridRole">
+                        <Form.Label>Role</Form.Label>
+                        <Form.Control name="role" value={this.state.role} onChange={this.onChange}/>
                       </Form.Group>
                     </Form.Row>
                     <Form.Row className="add-form-row">
                         <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" name="email" value={this.state.email} placeholder="Nhập email khách hàng" onChange={this.onChange} />
+                                <Form.Control type="email" name="email" value={this.state.email} onChange={this.onChange} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridPhone">
                             <Form.Label>Số điện thoại</Form.Label>
-                            <Form.Control name="phone" value={this.state.phone} placeholder="Nhập số điện thoại" onChange={this.onChange} />
+                            <Form.Control name="phone" value={this.state.phone} onChange={this.onChange} />
                         </Form.Group>
-                    </Form.Row>
-                    <Form.Row className="add-form-row">
-                        <Form.Group as={Col} controlId="formGridCusType">
-                                <Form.Label>Nhóm khách hàng</Form.Label>
-                                <Form.Control as="select" name="customerType" value={this.state.customerType} onChange={this.onChange} >
-                                  <option value={1}>Nhóm 1</option>
-                                  <option value={2}>Nhóm 2</option>
-                                  <option value={3}>Nhóm 3</option>
-                                  <option value={4}>Nhóm 4</option>
-                                </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col} controlId="formGridCusProfit">
-                                <Form.Label>Ưu đãi</Form.Label>
-                                <Form.Control as="select" name="customerProfit" value={this.state.customerProfit} onChange={this.onChange} >
-                                  <option value={1}>Nhóm 1</option>
-                                  <option value={2}>Nhóm 2</option>
-                                  <option value={3}>Nhóm 3</option>
-                                  <option value={4}>Nhóm 4</option>
-                                </Form.Control>
-                        </Form.Group>
-                    </Form.Row>    
-                                                                         
+                    </Form.Row>                                                                                              
               </Container>                  
             </Col>
             <Col xs={4}> 
@@ -161,13 +136,7 @@ class CustomerAddForm extends Component{
                     <Form.Label>Mô tả</Form.Label>
                     <Form.Control as="textarea" rows="5" name="description" value={this.state.description} placeholder="Nhập mô tả về khách hàng" onChange={this.onChange}/>
                   </Form.Group>                 
-                </Form.Row> 
-                <Form.Row className="add-form-row" >
-                  <Form.Group as={Col} controlId="formGridName">
-                    <Form.Label>Nhân viên chăm sóc</Form.Label>
-                    <Form.Control name="staff" value={this.state.staff} placeholder="" onChange={this.onChange}/>
-                  </Form.Group>
-                </Form.Row>                                                    
+                </Form.Row>                                                                  
                 </Container> 
               </Col>                     
           </Row>
@@ -182,4 +151,4 @@ class CustomerAddForm extends Component{
     }
 }
 
-export default CustomerAddForm;
+export default StaffUpdateForm;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {Component} from 'react'
 import CustomerListItem from './CustomerListItem';
 import DropDownCus from './DropDownCus';
-import PopupForm from '../PopupForm';
+import PopupForm from './PopupFormCus';
 import {Table} from 'react-bootstrap';
 
 
@@ -82,8 +82,8 @@ class CustomerList extends Component{
 					<Table responsive  hover>
 						<thead>
 							<tr>
-							<th className="text-center">Tên nhân viên</th>
-							<th className="text-center">Chức vụ</th>
+							<th className="text-center">Tên khách hàng</th>
+							<th className="text-center">Địa chỉ</th>
 							<th className="text-center">Ngày sinh</th>
 							<th className="text-center">Email</th>
 							<th className="text-center">Điện thoại</th>

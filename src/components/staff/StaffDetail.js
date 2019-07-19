@@ -1,9 +1,8 @@
 import React,{Component} from 'react';
 import {Card,Row,Col} from 'react-bootstrap';
-import TabViewDatil from '../TabViewDetail';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import PopupFormUpdate from '../PopupFormUpdate';
+import PopupFormUpdate from './PopupFormUpdateStaff';
 class StaffDetail extends Component{
     state ={
 		staffDetail : [],
@@ -11,7 +10,7 @@ class StaffDetail extends Component{
     componentDidMount(){
 		axios({
 			method: 'get',
-			url: 'http://5d2be65c8c90070014971e78.mockapi.io/staff/15'
+			url: 'http://5d2be65c8c90070014971e78.mockapi.io/staff/22'
 		}).then(respone => {
             console.log(respone);
 			this.setState({
@@ -24,7 +23,7 @@ class StaffDetail extends Component{
     deleteStaff(){
         axios({
 			method: 'delete',
-			url: 'http://5d2be65c8c90070014971e78.mockapi.io/staff/15'
+			url: 'http://5d2be65c8c90070014971e78.mockapi.io/staff/22'
 		}).then(respone => {
             console.log(respone+"xóa được chưuaaaaaaaaaaa");
 		}).catch(error => {
@@ -37,16 +36,19 @@ class StaffDetail extends Component{
     }
     render(){
         const staffDetail = this.state.staffDetail;
+        console.log(staffDetail);
         return(
             <div>
                 <h1>Thông tin chi tiết nhân viên</h1>
                 <Row>
-                    <Col xl={8}>
+                    <Col xl={6}>
                         <Card className="detail-card-8t" style={{ width: '100%' }}>
                         <Row>
-                            <span> 
-                                <h5 className="debt">{staffDetail.staffName}</h5>
-                            </span>
+                        <Col xl={6}> 
+                                <span> 
+                                    <h5 className="debt">{staffDetail.staffName}</h5>
+                                </span>
+                        </Col>
                         </Row>
                         <Card.Body>
                             <Card.Title style={{marginTop: '30px'}}>Ghi chú</Card.Title>
@@ -56,7 +58,7 @@ class StaffDetail extends Component{
                         </Card.Body>
                         </Card>                       
                     </Col>
-                    <Col xl={4}>
+                    <Col>
                         <Card className="detail-card" style={{ width: '100%' }}>
                             <Card.Body>
                                 <Card.Title>Thông tin nhân viên</Card.Title>
@@ -69,8 +71,10 @@ class StaffDetail extends Component{
                                     <br/>
                                 </Card.Text>
                             </Card.Body>
-                        </Card>
-                        <Card className="detail-card" style={{ width: '100%' }}>
+                        </Card>                                      
+                    </Col>
+                    <Col>
+                    <Card className="detail-card" style={{ width: '100%' }}>
                             <Card.Body>
                                 <Card.Title>Liên hệ</Card.Title>
                                 <Card.Text>
@@ -82,12 +86,13 @@ class StaffDetail extends Component{
                                     <br/>
                                 </Card.Text>
                             </Card.Body>
-                        </Card>                        
+                        </Card>          
                     </Col>
                 </Row>
             <hr className="form-line"/>
                 <Button variant="danger" className="float-left" onClick={this.onDelete}>Xóa nhân viên</Button>                            
-                <PopupFormUpdate open={this.props.open} staff={staffDetail}/>           
+                <PopupFormUpdate open={this.props.open} staff={staffDetail}/>       
+                    
             </div>      
         );
     }

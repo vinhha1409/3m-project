@@ -15,7 +15,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems,secondaryListItems} from '../components/NaviItem';
 import CustomerDetail from '../components/customer/CustomerDetail';
-import TabView from '../components/TabView';
+import TabView from '../components/customer/TabViewCus';
+import TabViewStaff from '../components/staff/TabViewStaff';
+import StaffDetail from '../components/staff/StaffDetail';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -145,7 +147,7 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <CustomerDetail open={open}/>
+          <TabViewStaff open={open}/>
         </Container>
       </main>
     </div>
